@@ -1,9 +1,9 @@
 #!/bin/bash
 
-HADOOP_VERSION=3.3.2
-DRILL_VERSION=1.20.1
-ZOOKEEPER_VERSION=3.7.1
-SPARK_VERSION=2.4.8
+HADOOP_VERSION=3.3.6
+DRILL_VERSION=1.22.0
+ZOOKEEPER_VERSION=3.7.2
+SPARK_VERSION=3.5.6
 
 SHELL_FOLDER=$(
     cd "$(dirname "$0")"
@@ -44,7 +44,7 @@ function download_hadoop {
 }
 
 function download_drill {
-    check_download apache-drill-$DRILL_VERSION.tar.gz https://mirrors.tuna.tsinghua.edu.cn/apache/drill/drill-${DRILL_VERSION}
+    check_download apache-drill-$DRILL_VERSION.tar.gz https://mirrors.tuna.tsinghua.edu.cn/apache/drill/${DRILL_VERSION}
 }
 
 function download_zookeeper {
