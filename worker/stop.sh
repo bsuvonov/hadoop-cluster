@@ -6,7 +6,7 @@ if [ ! -n "$WORKER_ID" ]; then
 fi
 
 echo "stop hadoop-worker-$WORKER_ID"
-docker-compose -f "$SHELL_FOLDER/docker-compose.yml" -p hadoop-worker-$WORKER_ID stop
+docker compose -f "$SHELL_FOLDER/docker-compose.yml" -p hadoop-worker-$WORKER_ID stop
 
 
 

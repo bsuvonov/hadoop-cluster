@@ -3,7 +3,7 @@ ARG DRILL_VERSION=1.22.0
 ARG ZOOKEEPER_VERSION=3.7.2
 ARG SPARK_VERSION=3.5.6
 
-FROM ubuntu:18.04 AS tarballs
+FROM ubuntu:22.04 AS tarballs
 WORKDIR /root
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -36,7 +36,7 @@ ARG SPARK_VERSION
 RUN pv -n tarballs/spark-${SPARK_VERSION}-bin-without-hadoop.tgz | \
     tar --owner=hadoop --group=hadoop --mode='g+wx' -xzf - 
 
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 WORKDIR /root
 
 # install openssh-server, curl, python and scala (for spark)
@@ -53,7 +53,7 @@ RUN apt-get update && apt-get install -y apt-transport-https ca-certificates apt
 ENV JDK_VERSION=8
 ENV JAVA_HOME=/usr/lib/jvm/java-${JDK_VERSION}-openjdk-amd64
 
-RUN apt-get install -y openjdk-${JDK_VERSION}-jdk-headless python python-pip \
+RUN apt-get install -y openjdk-${JDK_VERSION}-jdk-headless \
     openssh-server curl python3 python3-pip scala r-base gcc g++ \
     binutils build-essential cmake x11-xserver-utils clang libgmp-dev
 
@@ -131,7 +131,7 @@ ENV PATH=${SPARK_HOME}/bin:${PATH}
 
 # install softwares
 RUN apt-get install -y zsh screen unrar maven
-#RUN ln -s /usr/bin/python3 /usr/bin/python
+RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 COPY config/zsh/* ./
 COPY config/screen/* ./

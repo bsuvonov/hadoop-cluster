@@ -6,4 +6,4 @@ if [ ! -n "$WORKER_ID" ]; then
 fi
 
 echo "clean hadoop-worker-$WORKER_ID"
-docker-compose -f "$SHELL_FOLDER/docker-compose.yml" -p hadoop-worker-$WORKER_ID rm
+docker compose -f "$SHELL_FOLDER/docker-compose.yml" -p hadoop-worker-$WORKER_ID rm

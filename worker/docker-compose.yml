@@ -1,4 +1,3 @@
-version: "3.5"
 services:
   worker:
     image: tcimba/hadoop-cluster:latest
@@ -24,9 +23,8 @@ services:
     command: ${WORKER_NUMBER} ${WORKER_ID}
 networks:
   hadoop-net:
-    driver: overlay
-    external:
-      name: hadoop-net
+    name: hadoop-net
+    external: true
 volumes:
   hdfs-data:
   logs:
